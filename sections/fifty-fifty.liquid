@@ -9,9 +9,9 @@ In production, images are expected to be configured via section settings.
 {%- else -%}
   {%- assign layout_classes = 'md:pl-[max(1.5rem,calc((100vw-80rem)/2+1.5rem))] md:pr-10 lg:pr-12' -%}
 {%- endif -%}
-<section class="overflow-hidden py-0 md:h-[80vh]">
-  <div class="h-full w-full overflow-hidden md:grid md:grid-cols-2">
-    <div class="bg-blomy-beige px-6 py-8 sm:px-8 md:flex md:h-full {{ layout_classes }}">
+<section class="overflow-hidden py-0 ">
+  <div class="h-full w-full overflow-hidden md:grid md:grid-cols-2 ">
+    <div class="bg-blomy-beige px-6 py-8 sm:px-8 md:flex lg:py-16 md:h-full {{ layout_classes }}">
       <div class="mx-auto max-w-3xl text-center md:mx-0 md:flex md:w-full md:flex-col md:justify-center lg:text-left">
         {% if section.settings.title != blank %}
           <h2 class="text-[44px] font-semibold leading-tight tracking-tight text-stone-900 lg:text-6xl">
