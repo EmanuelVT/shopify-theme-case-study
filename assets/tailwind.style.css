@@ -1435,6 +1435,11 @@ video {
     margin-right: 0px;
   }
 
+  .md\:mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   .md\:mb-10 {
     margin-bottom: 2.5rem;
   }
@@ -1619,6 +1624,10 @@ video {
 
   .lg\:max-w-none {
     max-width: none;
+  }
+
+  .lg\:items-start {
+    align-items: flex-start;
   }
 
   .lg\:gap-4 {
