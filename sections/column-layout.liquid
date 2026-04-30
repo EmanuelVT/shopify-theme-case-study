@@ -1,0 +1,241 @@
+{%- comment -%}
+Fallback images are included for demo purposes so this section renders without manual Shopify setup.
+In production, images are expected to be configured via section settings.
+{%- endcomment -%}
+
+<section class="bg-blomy-cream py-10 md:py-14">
+  {% assign logo_blocks = section.blocks | where: 'type', 'logo_item' %}
+  {% assign column_blocks = section.blocks | where: 'type', 'column_item' %}
+
+  <div class="mx-auto w-full max-w-7xl px-4 md:px-6 lg:px-8">
+    {% if logo_blocks.size > 0 %}
+      <div class="mx-auto mb-8 w-full max-w-5xl md:mb-10">
+        <div class="grid grid-cols-2 justify-items-center gap-x-6 gap-y-8 md:flex md:flex-row md:flex-nowrap md:items-center md:justify-between md:gap-10">
+          {% for block in logo_blocks %}
+            {% liquid
+              assign logo_fallback_asset = ''
+              case forloop.index
+                when 1
+                  assign logo_fallback_asset = 'parents-logo.png'
+                when 2
+                  assign logo_fallback_asset = 'new-parent-logo.png'
+                when 3
+                  assign logo_fallback_asset = 'babylist-logo.png'
+                when 4
+                  assign logo_fallback_asset = 'parents-award-logo.png'
+              endcase
+            %}
+            {% if block.settings.image != blank or logo_fallback_asset != blank %}
+              <div
+                class="flex h-[100px] w-[100px] shrink-0 items-center justify-center overflow-hidden md:h-[130px] md:w-[130px]"
+                {{ block.shopify_attributes }}
+              >
+                {% if block.settings.image != blank %}
+                  {{
+                    block.settings.image
+                    | image_url: width: 260
+                    | image_tag:
+                      alt: block.settings.logo_alt | default: block.settings.image.alt | default: 'Brand logo',
+                      class: 'max-h-full max-w-full object-contain',
+                      loading: 'lazy',
+                      widths: '100, 130, 200, 260',
+                      sizes: '(min-width: 768px) 130px, 100px'
+                  }}
+                {% else %}
+                  <img
+                    src="{{ logo_fallback_asset | asset_url }}"
+                    alt="{{ block.settings.logo_alt | default: 'Brand logo' }}"
+                    class="max-h-full max-w-full object-contain"
+                    loading="lazy"
+                    width="260"
+                    height="260"
+                  >
+                {% endif %}
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+
+    <div class="w-full space-y-6 md:space-y-8">
+      {% if section.settings.heading != blank %}
+        <h2 class="text-center text-4xl font-semibold leading-tight tracking-tight text-stone-900 md:text-5xl">
+          {{ section.settings.heading }}
+        </h2>
+      {% endif %}
+
+      {% if column_blocks.size > 0 %}
+        <div class="flex flex-col gap-6 md:flex-row md:gap-5">
+          {% for block in column_blocks %}
+            {% liquid
+              assign card_fallback_asset = ''
+              case forloop.index
+                when 1
+                  assign card_fallback_asset = 'newborn.png'
+                when 2
+                  assign card_fallback_asset = 'infant.png'
+                when 3
+                  assign card_fallback_asset = 'toddler.png'
+              endcase
+            %}
+            <article class="w-full overflow-hidden rounded-[28px] bg-white shadow-sm md:flex-1" {{ block.shopify_attributes }}>
+              {% if block.settings.image != blank or card_fallback_asset != blank %}
+                <div class="aspect-[16/10] w-full overflow-hidden">
+                  {% if block.settings.image != blank %}
+                    {{
+                      block.settings.image
+                      | image_url: width: 1200
+                      | image_tag:
+                        alt: block.settings.image.alt | default: block.settings.title,
+                        class: 'h-full w-full object-cover',
+                        loading: 'lazy',
+                        widths: '400, 600, 800, 1200',
+                        sizes: '(min-width: 768px) 33vw, 100vw'
+                    }}
+                  {% else %}
+                    <img
+                      src="{{ card_fallback_asset | asset_url }}"
+                      alt="{{ block.settings.title }}"
+                      class="h-full w-full object-cover"
+                      loading="lazy"
+                      width="1200"
+                      height="750"
+                    >
+                  {% endif %}
+                </div>
+              {% endif %}
+
+              <div class="min-h-[220px] p-6 text-center md:min-h-[240px]">
+                {% if block.settings.title != blank %}
+                  <h3 class="mt-3 text-3xl font-semibold leading-tight text-stone-900">
+                    {{ block.settings.title }}
+                  </h3>
+                {% endif %}
+
+                {% if block.settings.label != blank %}
+                  <p class="text-sm font-medium leading-none text-blomy-sand lg:text-xl">
+                    {{ block.settings.label }}
+                  </p>
+                {% endif %}
+
+                {% if block.settings.description != blank %}
+                  <p class="mx-auto mt-3 max-w-lg text-base font-light text-stone-700 lg:text-lg lg:leading-6">
+                    {{ block.settings.description }}
+                  </p>
+                {% endif %}
+              </div>
+            </article>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Column layout",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Built for every stage."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "column_item",
+      "name": "Column item",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Newborn"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "(0-6 months)"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Designed specifically for your baby's first months with comfort and developmental play in mind."
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    },
+    {
+      "type": "logo_item",
+      "name": "Logo item",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Logo image"
+        },
+        {
+          "type": "text",
+          "id": "logo_alt",
+          "label": "Logo alt text",
+          "default": "Brand logo"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Column layout",
+      "blocks": [
+        {
+          "type": "column_item",
+          "settings": {
+            "title": "Newborn",
+            "label": "(0-6 months)",
+            "description": "Designed specifically for your baby's first months with comfort and developmental play in mind."
+          }
+        },
+        {
+          "type": "column_item",
+          "settings": {
+            "title": "Infant",
+            "label": "(6-12 months)",
+            "description": "Products for rapid physical, cognitive, and social growth as your child explores more."
+          }
+        },
+        {
+          "type": "column_item",
+          "settings": {
+            "title": "Toddler",
+            "label": "(12-24 months)",
+            "description": "Support your growing toddler with toys for active, curious, and independent development."
+          }
+        },
+        {
+          "type": "logo_item"
+        },
+        {
+          "type": "logo_item"
+        },
+        {
+          "type": "logo_item"
+        },
+        {
+          "type": "logo_item"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

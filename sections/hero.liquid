@@ -1,0 +1,200 @@
+{%- comment -%}
+Fallback images are included for demo purposes so this section renders without manual Shopify setup.
+In production, images are expected to be configured via section settings.
+{%- endcomment -%}
+
+<section class="relative isolate overflow-hidden pt-[150px] md:pt-0">
+  <div class="absolute inset-0 z-0 bg-stone-300">
+    {% liquid
+      if section.settings.background_image != blank
+        assign hero_background_url = section.settings.background_image | image_url: width: 2400
+      else
+        assign hero_background_url = 'hero-bg.png' | asset_url
+      endif
+    %}
+    <div
+      class="h-full w-full bg-no-repeat bg-cover bg-[center_bottom] xl:bg-[center_60%]"
+      style="background-image: url('{{ hero_background_url }}');"
+    ></div>
+  </div>
+
+  <div class="absolute inset-0 z-10 bg-gradient-to-r from-black/30 to-black/5"></div>
+
+  <div class="relative z-20 mx-auto w-full max-w-7xl px-4 py-3 md:px-6 sm:py-4 lg:px-8 lg:py-16">
+    <div class="flex min-h-[640px] flex-col justify-between gap-[120px] sm:gap-0 rounded-3xl lg:min-h-[600px]">
+      <div class="flex max-w-lg flex-col gap-4">
+        <div class="h-[72px] w-[66px] overflow-hidden bg-white/90 lg:h-[115px] lg:w-[105px]">
+          {% if section.settings.badge_image != blank %}
+            {{
+              section.settings.badge_image
+              | image_url: width: 210
+              | image_tag:
+                alt: section.settings.badge_image.alt | default: 'Customer reviews badge',
+                class: 'h-full w-full object-contain',
+                loading: 'eager',
+                width: 105,
+                height: 115
+            }}
+          {% else %}
+            <img
+              src="{{ 'badge-hero.png' | asset_url }}"
+              alt="Customer reviews badge"
+              class="h-full w-full object-contain"
+              loading="eager"
+              width="105"
+              height="115"
+            >
+          {% endif %}
+        </div>
+
+        <h1 class="mt-4 max-w-xs md:max-w-md text-[44px] font-semibold tracking-tight text-blomy-cream leading-[0.95] lg:text-[60px] lg:leading-[0.9]">
+          {{ section.settings.title }}
+        </h1>
+
+        <p class="my-3 max-w-sm text-[24px] text-blomy-cream font-normal leading-[22px] lg:text-[28px] lg:leading-[28px] lg:max-w-md">
+          {{ section.settings.description }}
+        </p>
+
+        {% if section.settings.button_text != blank and section.settings.button_url != blank %}
+          {% render 'cta-button', label: section.settings.button_text, url: section.settings.button_url %}
+        {% endif %}
+      </div>
+
+      {% assign category_blocks = section.blocks | where: 'type', 'category' %}
+      {% if category_blocks.size > 0 %}
+        <div class="flex flex-col items-end self-end gap-3 lg:gap-4 pb-1 sm:pb-2 lg:pb-0">
+          {% for block in category_blocks %}
+            <p class="flex items-center gap-4 rounded-full bg-white/90 px-4 py-1.5 text-base lg:text-xl font-medium leading-none text-stone-800">
+              {{ block.settings.title }}
+              {% liquid
+                assign fallback_icon_name = ''
+                case forloop.index
+                  when 1
+                    assign fallback_icon_name = 'star.png'
+                  when 2
+                    assign fallback_icon_name = 'heart.png'
+                  when 3
+                    assign fallback_icon_name = 'flower.png'
+                endcase
+              %}
+              {% if block.settings.image != blank or fallback_icon_name != blank %}
+                <span class="relative top-[3px] inline-flex size-6 shrink-0 overflow-hidden align-middle">
+                  {% if block.settings.image != blank %}
+                  {{
+                    block.settings.image
+                    | image_url: width: 24
+                    | image_tag:
+                      alt: block.settings.image.alt | default: 'Category image',
+                      class: 'block h-full w-full max-w-full object-contain',
+                      loading: 'lazy',
+                      width: 24,
+                      height: 24
+                  }}
+                  {% else %}
+                    <img
+                      src="{{ fallback_icon_name | asset_url }}"
+                      alt="{{ block.settings.title | default: 'Category icon' }}"
+                      class="block h-full w-full max-w-full object-contain"
+                      loading="lazy"
+                      width="24"
+                      height="24"
+                    >
+                  {% endif %}
+                </span>
+              {% endif %}
+            </p>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+
+{% schema %}
+  {
+    "name": "Hero",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "text",
+        "id": "description",
+        "label": "Description"
+      },
+      {
+        "type": "text",
+        "id": "button_text",
+        "label": "CTA Text"
+      },
+      {
+        "type": "url",
+        "id": "button_url",
+        "label": "CTA URL"
+      },
+      {
+        "type": "image_picker",
+        "id": "badge_image",
+        "label": "Badge image"
+      },
+      {
+        "type": "image_picker",
+        "id": "background_image",
+        "label": "Background image"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "category",
+        "name": "Category",
+        "limit": 3,
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Hero",
+        "settings": {
+          "title": "Safe, non-toxic toys designed for real development.",
+          "description": "Feel confident about what your child plays with.",
+          "button_text": "Shop Bestsellers",
+          "button_url": "/collections/all"
+        },
+        "blocks": [
+          {
+            "type": "category",
+            "settings": {
+              "title": "Non-toxic materials"
+            }
+          },
+          {
+            "type": "category",
+            "settings": {
+              "title": "Loved by parents"
+            }
+          },
+          {
+            "type": "category",
+            "settings": {
+              "title": "Designed for development"
+            }
+          }
+        ]
+      }
+    ]
+  }
+  {% endschema %}

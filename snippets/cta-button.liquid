@@ -1,0 +1,12 @@
+{% liquid
+  assign button_label = label | default: ''
+  assign button_url = url | default: ''
+  assign button_extra_classes = extra_classes | default: ''
+%}
+
+<a
+  href="{{ button_url }}"
+  class="mt-1 inline-flex w-fit items-center text-blomy-cream rounded-full bg-blomy-orange px-6 py-3 text-2xl lg:text-3xl font-medium uppercase leading-none tracking-wide transition hover:bg-orange-400 {{ button_extra_classes }}"
+>
+  {{ button_label }}
+</a>

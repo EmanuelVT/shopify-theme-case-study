@@ -1,0 +1,168 @@
+{%- comment -%}
+Fallback images are included for demo purposes so this section renders without manual Shopify setup.
+In production, images are expected to be configured via section settings.
+{%- endcomment -%}
+
+{%- assign desktop_layout = section.settings.desktop_layout -%}
+{%- if desktop_layout == 'image_left' -%}
+  {%- assign layout_classes = 'md:order-2 md:pl-10 md:pr-[max(1.5rem,calc((100vw-80rem)/2+1.5rem))] lg:pl-12' -%}
+{%- else -%}
+  {%- assign layout_classes = 'md:pl-[max(1.5rem,calc((100vw-80rem)/2+1.5rem))] md:pr-10 lg:pr-12' -%}
+{%- endif -%}
+<section class="overflow-hidden py-0 md:h-[80vh]">
+  <div class="h-full w-full overflow-hidden md:grid md:grid-cols-2">
+    <div class="bg-blomy-beige px-6 py-8 sm:px-8 md:flex md:h-full {{ layout_classes }}">
+      <div class="mx-auto max-w-3xl text-center md:mx-0 md:flex md:w-full md:flex-col md:justify-center lg:text-left">
+        {% if section.settings.title != blank %}
+          <h2 class="text-[44px] font-semibold leading-tight tracking-tight text-stone-900 lg:text-6xl">
+            {{ section.settings.title }}
+          </h2>
+        {% endif %}
+
+        <div class="mt-5 mb-4 space-y-4 md:mt-6 max-w-sm mx-auto lg:mb-8 lg:max-w-none lg:mx-0 lg:space-y-7">
+          {% for block in section.blocks %}
+            <article {{ block.shopify_attributes }}>
+              {% if block.settings.title != blank %}
+                <h3 class="text-2xl leading-tight tracking-tight text-stone-900 font-medium lg:text-[32px] lg:leading-6 lg:mb-2">
+                  {{ block.settings.title }}
+                </h3>
+              {% endif %}
+              {% if block.settings.description != blank %}
+                <p class="mt-1 text-base font-light leading-5 text-stone-700 lg:text-xl lg:leading-6">
+                  {{ block.settings.description }}
+                </p>
+              {% endif %}
+            </article>
+          {% endfor %}
+        </div>
+
+        {% if section.settings.button_label != blank and section.settings.button_url != blank %}
+          {% render 'cta-button',
+            label: section.settings.button_label,
+            url: section.settings.button_url,
+            extra_classes: 'whitespace-nowrap'
+          %}
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="relative aspect-[4/3] min-h-[260px] overflow-hidden bg-stone-200 md:h-full md:min-h-0 md:aspect-auto{% if desktop_layout == 'image_left' %} md:order-1{% endif %}">
+      {% liquid
+        if section.settings.image != blank
+          assign section_image_url = section.settings.image | image_url: width: 2000
+          assign section_image_alt = section.settings.image.alt | default: section.settings.title
+        else
+          assign section_image_fallback = 'blomy-baby.png'
+          assign section_image_url = section_image_fallback | asset_url
+          assign section_image_alt = section.settings.title
+        endif
+      %}
+      <div
+        class="absolute inset-0 h-full w-full bg-cover bg-center bg-no-repeat"
+        style="background-image: url('{{ section_image_url }}');"
+        role="img"
+        aria-label="{{ section_image_alt | escape }}"
+      ></div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Fifty Fifty",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Why choose Bloomy for your child?"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "CTA Text",
+      "default": "Shop the collection"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "CTA URL"
+    },
+    {
+      "type": "select",
+      "id": "desktop_layout",
+      "label": "Desktop layout",
+      "default": "copy_left",
+      "options": [
+        {
+          "value": "copy_left",
+          "label": "Copy left, image right"
+        },
+        {
+          "value": "image_left",
+          "label": "Image left, copy right"
+        }
+      ]
+    }
+  ],
+  "blocks": [
+    {
+      "type": "article",
+      "name": "Article",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Encourages independent play"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Simple toys that keep kids engaged longer."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Fifty Fifty",
+      "settings": {
+        "desktop_layout": "copy_left",
+        "button_label": "Shop the collection",
+        "button_url": "/collections"
+      },
+      "blocks": [
+        {
+          "type": "article",
+          "settings": {
+            "title": "Encourages independent play",
+            "description": "Simple toys that keep kids engaged longer."
+          }
+        },
+        {
+          "type": "article",
+          "settings": {
+            "title": "Natural, non-toxic materials",
+            "description": "Only materials you can feel good about, and built to last."
+          }
+        },
+        {
+          "type": "article",
+          "settings": {
+            "title": "Superior customer service",
+            "description": "Our team is ready to support your needs."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

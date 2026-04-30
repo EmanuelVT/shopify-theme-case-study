@@ -1,0 +1,454 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero_jVaWmY": {
+      "type": "hero",
+      "blocks": {
+        "category_RLetWx": {
+          "type": "category",
+          "settings": {
+            "title": "Non-toxic materials",
+            "image": "shopify://shop_images/icon.png"
+          }
+        },
+        "category_4Hd4xW": {
+          "type": "category",
+          "settings": {
+            "title": "Loved by parents",
+            "image": "shopify://shop_images/icon_1.png"
+          }
+        },
+        "category_7dLY4a": {
+          "type": "category",
+          "settings": {
+            "title": "Designed for development",
+            "image": "shopify://shop_images/icon_2.png"
+          }
+        }
+      },
+      "block_order": ["category_RLetWx", "category_4Hd4xW", "category_7dLY4a"],
+      "name": "t:names.hero",
+      "settings": {
+        "title": "Safe, non-toxic toys designed for real development.",
+        "description": "Feel confident about what your child plays with.",
+        "button_text": "Shop Bestsellers",
+        "button_url": "shopify://collections",
+        "badge_image": "shopify://shop_images/image_8.png",
+        "background_image": "shopify://shop_images/5a084327ecb5f1468a5a9f8aef5beb9764c2e2fc.png"
+      }
+    },
+    "product_list_fa6P9H": {
+      "type": "product-list",
+      "blocks": {
+        "static-header": {
+          "type": "_product-list-content",
+          "name": "t:names.header",
+          "static": true,
+          "settings": {
+            "content_direction": "row",
+            "vertical_on_mobile": false,
+            "horizontal_alignment": "space-between",
+            "vertical_alignment": "flex-end",
+            "align_baseline": true,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 12,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "product_list_text_YFtzcL": {
+              "type": "_product-list-text",
+              "name": "t:names.collection_title",
+              "settings": {
+                "text": "<h3>{{ closest.collection.title }}</h3>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "h4",
+                "font": "var(--font-body--family)",
+                "font_size": "",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "product_list_button_MWeP9V": {
+              "type": "_product-list-button",
+              "name": "t:names.product_list_button",
+              "settings": {
+                "label": "View all",
+                "open_in_new_tab": false,
+                "style_class": "link",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "product_list_text_YFtzcL",
+            "product_list_button_MWeP9V"
+          ]
+        },
+        "static-product-card": {
+          "type": "_product-card",
+          "name": "t:names.product_card",
+          "static": true,
+          "settings": {
+            "product_card_gap": 4,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "product_card_gallery_677WP3": {
+              "type": "_product-card-gallery",
+              "name": "t:names.product_card_media",
+              "settings": {
+                "image_ratio": "adapt",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "product_title_YXxMTj": {
+              "type": "product-title",
+              "name": "t:names.product_title",
+              "settings": {
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 4,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "price_JQzVV4": {
+              "type": "price",
+              "name": "t:names.product_price",
+              "settings": {
+                "show_sale_price_first": true,
+                "show_installments": false,
+                "show_tax_info": false,
+                "type_preset": "h6",
+                "width": "100%",
+                "alignment": "left",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "color": "var(--color-foreground)",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "product_card_gallery_677WP3",
+            "product_title_YXxMTj",
+            "price_JQzVV4"
+          ]
+        }
+      },
+      "disabled": true,
+      "name": "Featured collection",
+      "settings": {
+        "collection": "all",
+        "layout_type": "grid",
+        "carousel_on_mobile": false,
+        "max_products": 8,
+        "columns": 4,
+        "mobile_columns": "2",
+        "mobile_card_size": "60cqw",
+        "columns_gap": 8,
+        "rows_gap": 24,
+        "icons_style": "arrow",
+        "icons_shape": "none",
+        "section_width": "page-width",
+        "horizontal_alignment": "flex-start",
+        "gap": 28,
+        "color_scheme": "scheme-1",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    },
+    "column_layout_xVKMVn": {
+      "type": "column-layout",
+      "blocks": {
+        "logo_item_3XpR9Y": {
+          "type": "logo_item",
+          "settings": {
+            "image": "shopify://shop_images/image_4.png",
+            "logo_alt": "Brand logo"
+          }
+        },
+        "logo_item_RgV6GY": {
+          "type": "logo_item",
+          "settings": {
+            "image": "shopify://shop_images/image_6.png",
+            "logo_alt": "Brand logo"
+          }
+        },
+        "logo_item_QM8EML": {
+          "type": "logo_item",
+          "settings": {
+            "image": "shopify://shop_images/image_7.png",
+            "logo_alt": "Brand logo"
+          }
+        },
+        "logo_item_eCQPhD": {
+          "type": "logo_item",
+          "settings": {
+            "image": "shopify://shop_images/image_5.png",
+            "logo_alt": "Brand logo"
+          }
+        },
+        "column_item_GdQVyW": {
+          "type": "column_item",
+          "settings": {
+            "title": "Newborn",
+            "label": "(0-6 months)",
+            "description": "Designed specifically for your baby's precious first months, our Newborn Essentials collection creates the perfect environment for comfort, security, and early development.",
+            "image": "shopify://shop_images/img-mobile.png"
+          }
+        },
+        "column_item_ecbFhY": {
+          "type": "column_item",
+          "settings": {
+            "title": "Infant",
+            "label": "(0-6 months)",
+            "description": "Thoughtfully designed for this stage of remarkable physical, cognitive, and social growth, these products evolve with your increasingly mobile and curious child.",
+            "image": "shopify://shop_images/img-baby-gym.png"
+          }
+        },
+        "column_item_LVtYQY": {
+          "type": "column_item",
+          "settings": {
+            "title": "Toddler",
+            "label": "(0-6 months)",
+            "description": "Support your growing explorer during the exciting 12-24 month period with our Toddler Development collection.",
+            "image": "shopify://shop_images/img-toddler-w-plushie.png"
+          }
+        }
+      },
+      "block_order": [
+        "logo_item_3XpR9Y",
+        "logo_item_RgV6GY",
+        "logo_item_QM8EML",
+        "logo_item_eCQPhD",
+        "column_item_GdQVyW",
+        "column_item_ecbFhY",
+        "column_item_LVtYQY"
+      ],
+      "name": "Column layout",
+      "settings": {
+        "heading": "Built for every stage."
+      }
+    },
+    "fifty_fifty_DMRB3c": {
+      "type": "fifty-fifty",
+      "blocks": {
+        "article_MANbaU": {
+          "type": "article",
+          "settings": {
+            "title": "Encourages independent play",
+            "description": "Simple toys that keep kids engaged longer."
+          }
+        },
+        "article_Y6Vi3e": {
+          "type": "article",
+          "settings": {
+            "title": "Natural, non-toxic materials",
+            "description": "Only materials you can feel good about, and built to last."
+          }
+        },
+        "article_n7VHpy": {
+          "type": "article",
+          "settings": {
+            "title": "Superior customer service",
+            "description": "Our team is ready to support your needs."
+          }
+        }
+      },
+      "block_order": ["article_MANbaU", "article_Y6Vi3e", "article_n7VHpy"],
+      "name": "Fifty Fifty",
+      "settings": {
+        "title": "Why choose Bloomy for your child?",
+        "image": "shopify://shop_images/3U6A4396_1.png",
+        "button_label": "Shop the collection",
+        "button_url": "shopify://collections",
+        "desktop_layout": "copy_left"
+      }
+    },
+    "comparison_table_8k9BtQ": {
+      "type": "comparison-table",
+      "blocks": {
+        "comparison_row_VXPay7": {
+          "type": "comparison_row",
+          "settings": {
+            "category": "Core Purpose",
+            "main_value": "Learning, independence, and exploration",
+            "other_value": "Passive entertainment"
+          }
+        },
+        "comparison_row_dzgkJU": {
+          "type": "comparison_row",
+          "settings": {
+            "category": "Materials",
+            "main_value": "Learning, independence, and exploration",
+            "other_value": "Plastic, synthetic materials"
+          }
+        },
+        "comparison_row_NEUJ7t": {
+          "type": "comparison_row",
+          "settings": {
+            "category": "Cognitive Development",
+            "main_value": "Learning, independence, and exploration",
+            "other_value": "Limited interaction patterns"
+          }
+        },
+        "comparison_row_f3WxXF": {
+          "type": "comparison_row",
+          "settings": {
+            "category": "Creativity",
+            "main_value": "Learning, independence, and exploration",
+            "other_value": "Fixed outcomes"
+          }
+        },
+        "comparison_row_KfkePp": {
+          "type": "comparison_row",
+          "settings": {
+            "category": "Engagement Style",
+            "main_value": "Learning, independence, and exploration",
+            "other_value": "Passive (toy leads the play)"
+          }
+        },
+        "comparison_row_GHfkP9": {
+          "type": "comparison_row",
+          "settings": {
+            "category": "Motor Skill Development",
+            "main_value": "Learning, independence, and exploration",
+            "other_value": "Often limited to simple actions"
+          }
+        },
+        "comparison_row_U7qxdY": {
+          "type": "comparison_row",
+          "settings": {
+            "category": "Durability",
+            "main_value": "Learning, independence, and exploration",
+            "other_value": "Shorter lifespan, more prone to breaking"
+          }
+        },
+        "comparison_row_qFpLVk": {
+          "type": "comparison_row",
+          "settings": {
+            "category": "Environmental Impact",
+            "main_value": "Learning, independence, and exploration",
+            "other_value": "Higher waste"
+          }
+        },
+        "comparison_row_cdbw9h": {
+          "type": "comparison_row",
+          "settings": {
+            "category": "Safety",
+            "main_value": "Learning, independence, and exploration",
+            "other_value": "May include electronics or small parts"
+          }
+        }
+      },
+      "block_order": [
+        "comparison_row_VXPay7",
+        "comparison_row_dzgkJU",
+        "comparison_row_NEUJ7t",
+        "comparison_row_f3WxXF",
+        "comparison_row_KfkePp",
+        "comparison_row_GHfkP9",
+        "comparison_row_U7qxdY",
+        "comparison_row_qFpLVk",
+        "comparison_row_cdbw9h"
+      ],
+      "name": "Comparison table",
+      "settings": {
+        "title": "How our toys compare",
+        "category_label": "Category",
+        "main_column_label": "Our Purposeful Play Toys",
+        "other_column_label": "High-Stimulation / Pre-Programmed Toys"
+      }
+    }
+  },
+  "order": [
+    "hero_jVaWmY",
+    "product_list_fa6P9H",
+    "column_layout_xVKMVn",
+    "fifty_fifty_DMRB3c",
+    "comparison_table_8k9BtQ"
+  ]
+}

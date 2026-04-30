@@ -1,0 +1,211 @@
+<section class="w-full overflow-x-clip bg-blomy-cream py-16 md:py-24">
+  <div class="mx-auto max-w-5xl px-4">
+    {% if section.settings.title != blank %}
+      <div class="mb-12 text-center">
+        <h2 class="text-balance text-3xl font-semibold tracking-tight text-stone-900 md:text-4xl">
+          {{ section.settings.title }}
+        </h2>
+      </div>
+    {% endif %}
+
+    <div class="hidden md:block">
+      <div class="overflow-hidden rounded-2xl border border-stone-300 bg-white shadow-md shadow-black/15">
+        <div class="grid grid-cols-3 border-b border-stone-300 bg-blomy-cream px-6 py-4">
+          <div class="text-sm font-medium uppercase tracking-wide text-stone-600">
+            {{ section.settings.category_label }}
+          </div>
+          <div class="text-center text-sm font-medium uppercase tracking-wide text-blomy-green">
+            {{ section.settings.main_column_label }}
+          </div>
+          <div class="mx-auto max-w-56 text-center text-sm font-medium uppercase tracking-wide text-stone-600">
+            {{ section.settings.other_column_label }}
+          </div>
+        </div>
+
+        <div class="divide-y divide-stone-300">
+          {% for block in section.blocks %}
+            <div
+              class="grid grid-cols-3 items-center bg-white px-6 py-4 transition-colors"
+              {{ block.shopify_attributes }}
+            >
+              <div class="font-medium text-stone-900">
+                {{ block.settings.category }}
+              </div>
+              <div class="flex flex-col items-center gap-1 text-center">
+                <span class="mx-auto max-w-56 text-sm font-medium text-blomy-green">{{ block.settings.main_value }}</span>
+              </div>
+              <div class="flex flex-col items-center gap-1 text-center">
+                <span class="max-w-56 mx-auto text-sm font-medium text-stone-600">{{ block.settings.other_value }}</span>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <div class="space-y-4 md:hidden">
+      {% for block in section.blocks %}
+        <div class="overflow-hidden rounded-xl border border-stone-300 bg-white shadow-md shadow-black/15" {{ block.shopify_attributes }}>
+          <div class="border-b border-stone-300 bg-[#faf6f1] px-4 py-3">
+            <h3 class="font-medium text-stone-900">{{ block.settings.category }}</h3>
+          </div>
+
+          <div class="grid grid-cols-2 divide-x divide-stone-300">
+            <div class="flex flex-col items-center gap-2 px-4 py-4 text-center">
+              <span class="text-xs font-medium uppercase tracking-wide text-blomy-green">
+                {{ section.settings.main_column_label }}
+              </span>
+              <span class="text-xs text-blomy-green">{{ block.settings.main_value }}</span>
+            </div>
+            <div class="flex flex-col items-center gap-2 px-2 py-4 text-center">
+              <span class="text-xs font-medium uppercase tracking-wide text-stone-600">
+                {{ section.settings.other_column_label }}
+              </span>
+              <span class="text-xs text-stone-600">{{ block.settings.other_value }}</span>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Comparison table",
+  "tag": "section",
+  "class": "comparison-table-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "How our toys compare:"
+    },
+    {
+      "type": "text",
+      "id": "category_label",
+      "label": "Category column label",
+      "default": "Category"
+    },
+    {
+      "type": "text",
+      "id": "main_column_label",
+      "label": "Main column label",
+      "default": "Our Purposeful Play Toys"
+    },
+    {
+      "type": "text",
+      "id": "other_column_label",
+      "label": "Other column label",
+      "default": "High-Stimulation / Pre-Programmed Toys"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "comparison_row",
+      "name": "Comparison row",
+      "settings": [
+        {
+          "type": "text",
+          "id": "category",
+          "label": "Category",
+          "default": "Core Purpose"
+        },
+        {
+          "type": "textarea",
+          "id": "main_value",
+          "label": "Main column value",
+          "default": "Learning, independence, and exploration"
+        },
+        {
+          "type": "textarea",
+          "id": "other_value",
+          "label": "Other column value",
+          "default": "Entertainment and instant engagement"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "Comparison table",
+      "blocks": [
+        {
+          "type": "comparison_row",
+          "settings": {
+            "category": "Core Purpose",
+            "main_value": "Learning, independence, and exploration",
+            "other_value": "Entertainment and instant engagement"
+          }
+        },
+        {
+          "type": "comparison_row",
+          "settings": {
+            "category": "Materials",
+            "main_value": "Natural (wood, cotton, metal)",
+            "other_value": "Plastic, synthetic materials"
+          }
+        },
+        {
+          "type": "comparison_row",
+          "settings": {
+            "category": "Cognitive Development",
+            "main_value": "Encourages problem-solving and critical thinking",
+            "other_value": "Limits thinking with preset functions"
+          }
+        },
+        {
+          "type": "comparison_row",
+          "settings": {
+            "category": "Creativity",
+            "main_value": "Open-ended play driven by imagination",
+            "other_value": "Fixed outcomes, less imaginative play"
+          }
+        },
+        {
+          "type": "comparison_row",
+          "settings": {
+            "category": "Engagement Style",
+            "main_value": "Active (child leads the play)",
+            "other_value": "Passive (toy leads the play)"
+          }
+        },
+        {
+          "type": "comparison_row",
+          "settings": {
+            "category": "Motor Skill Development",
+            "main_value": "Develops fine motor skills through hands-on use",
+            "other_value": "Often limited to simple actions (e.g. pressing buttons)"
+          }
+        },
+        {
+          "type": "comparison_row",
+          "settings": {
+            "category": "Durability",
+            "main_value": "Long-lasting, multi-use",
+            "other_value": "Shorter lifespan, more prone to breaking"
+          }
+        },
+        {
+          "type": "comparison_row",
+          "settings": {
+            "category": "Environmental Impact",
+            "main_value": "Eco-friendly materials",
+            "other_value": "Higher waste"
+          }
+        },
+        {
+          "type": "comparison_row",
+          "settings": {
+            "category": "Safety",
+            "main_value": "Non-toxic, simple design",
+            "other_value": "May include electronics or small parts"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
